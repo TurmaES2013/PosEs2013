@@ -7,6 +7,8 @@ package br.edu.unis.oo.negocio;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -23,8 +25,8 @@ public class Pessoa {
     private String rg;
     private String certidaoNascimento;
     private int capaz;
-    private List<Renda> rendas = new ArrayList<Renda>(); 
-    private List<Deficiencia> deficiencias = new ArrayList<Deficiencia>();
+    private Set<Renda> rendas = new HashSet<Renda>(); 
+    private Set<Deficiencia> deficiencias = new HashSet<Deficiencia>();
     private Pessoa chefe;
     private Escolaridade escolaridade;
     private Vinculo parentesco;
