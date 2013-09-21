@@ -10,6 +10,14 @@ package br.edu.unis.oo.negocio;
  */
 public class Renda  {
      private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
      private String tipo;
      private double valor;
 
