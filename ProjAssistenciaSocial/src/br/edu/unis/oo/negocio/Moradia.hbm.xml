@@ -12,6 +12,5 @@
         <property name="coletaEsgoto" type="int" column="coletaEsgoto"/>    
         <property name="aguaTratada" type="int" column="aguaTratada"/>          
         <many-to-one name="moradia" class="Moradia" column="moradia"/>
-
     </class>
 </hibernate-mapping>
