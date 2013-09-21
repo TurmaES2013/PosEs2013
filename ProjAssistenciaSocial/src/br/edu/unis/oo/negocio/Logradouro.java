@@ -6,7 +6,7 @@ package br.edu.unis.oo.negocio;
 
 /**
  *
- * @author alunos
+ * @author Marcel
  */
 public class Logradouro {
     

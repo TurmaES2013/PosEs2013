@@ -6,7 +6,7 @@ package br.edu.unis.oo.negocio;
 
 /**
  *
- * @author alunos
+ * @author Marcel
  */
 public class Moradia {
     private int id;
@@ -17,6 +17,7 @@ public class Moradia {
     private int coletaEsgoto;
     private int aguaTratada;
     private Logradouro logradouro;
+    
     
     public int getId() {
         return id;
