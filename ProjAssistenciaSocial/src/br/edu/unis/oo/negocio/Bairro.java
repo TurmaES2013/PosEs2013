@@ -6,7 +6,7 @@ package br.edu.unis.oo.negocio;
 
 /**
  *
- * @author Giovani
+ * @author alunos
  */
 public class Bairro {
     
