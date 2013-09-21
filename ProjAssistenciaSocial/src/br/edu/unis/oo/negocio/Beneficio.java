@@ -1,7 +1,9 @@
-
+/*
+ João Carlos
+ */
 package br.edu.unis.oo.negocio;
 
-public class Benefico {
+public class Beneficio {
     public int id;
     public String descricao;
     public boolean status;
