@@ -39,9 +39,14 @@ public class Logradouro {
         this.cep = cep;
     }
 
-    private Logradouro(Bairro b)
-    {
-        this.bairro = b;
+    public Bairro getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(Bairro bairro) {
+        this.bairro = bairro;
     }
     
+    
+        
 }

@@ -87,5 +87,5 @@ public class Requerimento {
     public void setBeneficios(Set<Beneficio> beneficios) {
         this.beneficios = beneficios;
     }
-       
+    
 }

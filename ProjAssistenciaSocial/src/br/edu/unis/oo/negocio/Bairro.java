@@ -14,11 +14,6 @@ public class Bairro {
     private String descricao;
     private Cidade cidade;
     
-    public Bairro(Cidade cidade)
-    {
-        this.setCidade(cidade);
-    }
-
     public int getId() {
         return id;
     }

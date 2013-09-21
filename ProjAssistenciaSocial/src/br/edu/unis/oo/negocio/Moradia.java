@@ -82,10 +82,5 @@ public class Moradia {
     public void setLogradouro(Logradouro logradouro) {
         this.logradouro = logradouro;
     }
-    
-    
-    public Moradia(Logradouro l)
-    {
-        this.logradouro = l;
-    }
+   
 }
