@@ -4,9 +4,11 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="br.edu.unis.oo.negocio">
+    
     <class name="Deficiencia" table="tblDeficiencia">
         <id name="id" type="int" column="id"/>
         <property name="descricao" type="java.lang.String" column="descricao"/>       
     </class>
+    
 </hibernate-mapping>
 

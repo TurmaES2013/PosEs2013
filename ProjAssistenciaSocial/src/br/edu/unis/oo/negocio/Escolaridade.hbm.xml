@@ -5,8 +5,10 @@
 <hibernate-mapping package="br.edu.unis.oo.negocio
 
     <class name="Escolaridade" table="tblEscolaridade">
+        
         <id name="id" type="int" column="id"/>
         <property name="descricao" type="java.lang.String" column="descricao"/>       
     </class>
+    
 </hibernate-mapping>
 
