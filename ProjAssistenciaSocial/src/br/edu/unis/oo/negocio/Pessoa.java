@@ -29,7 +29,17 @@ public class Pessoa {
     private Set<Deficiencia> deficiencias = new HashSet<Deficiencia>();
     private Pessoa chefe;
     private Escolaridade escolaridade;
+    private Moradia moradia;
     private Vinculo parentesco;
+
+    
+    public Moradia getMoradia() {
+        return moradia;
+    }
+
+    public void setMoradia(Moradia moradia) {
+        this.moradia = moradia;
+    }
 
     public Set<Deficiencia> getDeficiencias() {
         return deficiencias;

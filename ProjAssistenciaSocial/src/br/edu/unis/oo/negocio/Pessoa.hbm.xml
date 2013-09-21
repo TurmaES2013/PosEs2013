@@ -4,15 +4,28 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="br.edu.unis.oo.negocio">
     <class name="Pessoa" table="tblPessoa">
-        <id name="nis" type="String" column="nis"/>
-        <property name="nome" type="String" column="nome"/>
+        <id name="nis" type="java.lang.String" column="nis"/>
+        <property name="nome" type="java.lang.String" column="nome"/>
         <property name="dataNascimento" type="java.util.Date" column="dataNascimento"/>
-        <property name="sexo" type="String" column="sexo"/>
+        <property name="sexo" type="java.lang.String" column="sexo"/>
         <property name="dataCadastro" type="java.util.Date" column="dataCadastro"/>
-        <property name="status" type="String" column="status"/>
-        <property name="cpf" type="String" column="cpf"/>
-        <property name="rg" type="String" column="rg"/>
-        <property name="certidaoNascimento" type="String" column="certidaoNascimento"/>
+        <property name="status" type="java.lang.String" column="status"/>
+        <property name="cpf" type="java.lang.String" column="cpf"/>
+        <property name="rg" type="java.lang.String" column="rg"/>
+        <property name="certidaoNascimento" type="java.lang.String" column="certidaoNascimento"/>
         <property name="capaz" type="int" column="id"/>
-    </class>
+        
+        <set name="deficiencias" table="tblDeficienciaPessoa">
+		<key column="pessoa" />
+		<many-to-many column="deficiencia" class="Deficiencia"/>
+	</set>
+
+<set name="rendas" table="tblRendaPessoa">
+		<key column="pessoa" />
+		<many-to-many column="renda" class="Renda"/>
+	</set>
+        <many-to-one name="parentesco" class="Vinculo" column="parentesco"/>
+        <many-to-one name="moradia" class="Moradia" column="moradia"/>
+        <many-to-one name="escolaridade" class="Escolaridade" column="escolaridade"/>
+        </class>
 </hibernate-mapping>
