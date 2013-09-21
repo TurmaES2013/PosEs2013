@@ -4,7 +4,9 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="br.edu.unis.oo.negocio">
     <class name="Vinculo" table="tblVinculo">
-        <id name="id" type="int" column="id"/>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
         <property name="descricao" type="java.lang.String" column="descricao"/>       
     </class>
 </hibernate-mapping>
