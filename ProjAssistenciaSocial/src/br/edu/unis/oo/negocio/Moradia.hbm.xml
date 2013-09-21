@@ -14,3 +14,4 @@
         <many-to-one name="logradouro" class="Logradouro" column="logradouro"/>
     </class>
 </hibernate-mapping>
+
