@@ -1,5 +1,5 @@
 /*
- joão
+ João Carlos
  */
 package br.edu.unis.oo.negocio;
 
