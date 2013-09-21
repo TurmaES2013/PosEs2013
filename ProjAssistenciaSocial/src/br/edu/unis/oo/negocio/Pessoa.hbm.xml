@@ -20,12 +20,13 @@
 		<many-to-many column="deficiencia" class="Deficiencia"/>
 	</set>
 
-<set name="rendas" table="tblRendaPessoa">
+        <set name="rendas" table="tblRendaPessoa">
 		<key column="pessoa" />
 		<many-to-many column="renda" class="Renda"/>
 	</set>
         <many-to-one name="parentesco" class="Vinculo" column="parentesco"/>
         <many-to-one name="moradia" class="Moradia" column="moradia"/>
         <many-to-one name="escolaridade" class="Escolaridade" column="escolaridade"/>
+        <many-to-one name="chefe" class="Pessoa" column="chefe"/>
         </class>
 </hibernate-mapping>

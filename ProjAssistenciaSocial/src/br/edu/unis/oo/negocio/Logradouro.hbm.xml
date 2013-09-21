@@ -7,6 +7,6 @@
         <id name="id" type="int" column="id"/>
         <property name="descricao" type="java.lang.String" column="descricao"/>   
         <property name="cep" type="java.lang.String" column="cep"/>      
-        <many-to-one name="logradouro" class="Logradouro" column="logradouro"/>
+        <many-to-one name="bairro" class="Bairro" column="bairro"/>
     </class>
 </hibernate-mapping>
