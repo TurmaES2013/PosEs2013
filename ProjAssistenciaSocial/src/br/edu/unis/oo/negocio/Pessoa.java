@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author Richard
+ * @author Richard Gerhardt
  */
 public class Pessoa {
     private String nis;
