@@ -8,7 +8,6 @@
         
         <id name="id" type="int" column="id"/>
         <property name="descricao" type="java.lang.String" column="descricao"/>       
-    </class>
-    
+    </class>        
 </hibernate-mapping>
 
