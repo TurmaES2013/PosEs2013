@@ -37,6 +37,8 @@ public class frmVinculo extends javax.swing.JInternalFrame {
         btnNovo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVinculo = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtFiltro = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
@@ -68,16 +70,35 @@ public class frmVinculo extends javax.swing.JInternalFrame {
 
         tblVinculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Descrição"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblVinculo);
+
+        jLabel1.setText("Filtro:");
+
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,13 +106,19 @@ public class frmVinculo extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnNovo)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFiltro))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnNovo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovo)
+                    .addComponent(jLabel1)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
         );
@@ -122,9 +149,29 @@ public class frmVinculo extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_formInternalFrameOpened
 
+    private void txtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyPressed
+       
+    }//GEN-LAST:event_txtFiltroKeyPressed
+
+    private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
+         SessionFactory sfac = new Configuration().configure().buildSessionFactory();
+        Session se = sfac.openSession();
+        
+        List vinculos = se.createQuery("from Vinculo where descricao like '"+ this.txtFiltro.getText() +"%' order by descricao").list();
+        DefaultTableModel model = (DefaultTableModel)this.tblVinculo.getModel();
+        model.setNumRows(0);
+        Iterator it = vinculos.iterator();
+        while(it.hasNext()){
+            Vinculo v = (Vinculo) it.next();
+            model.addRow(new Object[]{v.getId(), v.getDescricao()});
+        }
+    }//GEN-LAST:event_txtFiltroKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNovo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblVinculo;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }
