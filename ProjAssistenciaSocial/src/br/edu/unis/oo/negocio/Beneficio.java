@@ -6,7 +6,7 @@ package br.edu.unis.oo.negocio;
 public class Beneficio {
     public int id;
     public String descricao;
-    public boolean status;
+    public int status;
 
     public int getId() {
         return id;
@@ -24,11 +24,11 @@ public class Beneficio {
         this.descricao = descricao;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
     
