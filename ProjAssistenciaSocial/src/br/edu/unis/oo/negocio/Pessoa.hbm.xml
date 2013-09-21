@@ -27,6 +27,5 @@
         <many-to-one name="parentesco" class="Vinculo" column="parentesco"/>
         <many-to-one name="moradia" class="Moradia" column="moradia"/>
         <many-to-one name="escolaridade" class="Escolaridade" column="escolaridade"/>
-        
-    </class>
+        </class>
 </hibernate-mapping>

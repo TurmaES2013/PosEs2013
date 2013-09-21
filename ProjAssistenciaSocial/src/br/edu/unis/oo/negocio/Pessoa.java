@@ -32,6 +32,7 @@ public class Pessoa {
     private Moradia moradia;
     private Vinculo parentesco;
 
+    
     public Moradia getMoradia() {
         return moradia;
     }
