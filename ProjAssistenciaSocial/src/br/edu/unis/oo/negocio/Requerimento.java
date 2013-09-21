@@ -80,14 +80,12 @@ public class Requerimento {
         this.responsavel = responsavel;
     }
 
-    public List<Beneficio> getBeneficios() {
+    public Set<Beneficio> getBeneficios() {
         return beneficios;
     }
 
-    public void setBeneficios(List<Beneficio> beneficios) {
+    public void setBeneficios(Set<Beneficio> beneficios) {
         this.beneficios = beneficios;
     }
-
-    
-    
+       
 }
