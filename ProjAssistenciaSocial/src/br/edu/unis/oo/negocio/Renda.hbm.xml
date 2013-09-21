@@ -5,6 +5,7 @@
 <hibernate-mapping package="br.edu.unis.oo.negocio">
     <class name="Renda" table="tblRenda">
         <id name="id" type="int" column="id"/>
+        
         <property name="tipo" type="java.lang.String" column="tipo"/>
         <property name="valor" type="double" column="valor"/>       
     </class>
