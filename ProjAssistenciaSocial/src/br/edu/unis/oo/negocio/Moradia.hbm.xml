@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="br.edu.unis.oo.negocio">
+    <class name="Moradia" table="tblMoradia">
+        <id name="id" type="int" column="id"/>
+        <property name="numero" type="java.lang.String" column="numero"/>  
+        <property name="complemento" type="java.lang.String" column="complemento"/>  
+        <property name="qtdBanheiro" type="int" column="qtdBanheiro"/> 
+        <property name="coletaLixo" type="int" column="coletaLixo"/>    
+        <property name="coletaEsgoto" type="int" column="coletaEsgoto"/>    
+        <property name="aguaTratada" type="int" column="aguaTratada"/>          
+        <many-to-one name="moradia" class="Moradia" column="moradia"/>
+    </class>
+</hibernate-mapping>
