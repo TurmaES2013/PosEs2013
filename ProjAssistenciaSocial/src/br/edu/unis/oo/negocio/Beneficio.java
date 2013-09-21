@@ -1,4 +1,6 @@
-
+/*
+ joão
+ */
 package br.edu.unis.oo.negocio;
 
 public class Beneficio {
