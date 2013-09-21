@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="br.edu.unis.oo.negocio">
+    
+    <class name="Requerimento" table="tblRequerimento">
+        <id name="id" type="int" column="id"/>
+        <property name="data" type="java.util.Date" column="data"/>  
+        <property name="valor" type="double" column="valor"/>  
+        <property name="situacao" type="int" column="situacao"/>  
+        <property name="obs" type="java.lang.String" column="obs"/>  
+        <many-to-one name="pessoa" class="Pessoa" column="pessoa"/>
+        <many-to-one name="usuario" class="Usuario" column="usuario"/>
+        <set name="set" table="tblRequerimentoBeneficio">
+		<key column="requerimento" />
+		<many-to-many column="beneficio" class="Beneficio"/>
+	</set>
+    </class>
+</hibernate-mapping>
+

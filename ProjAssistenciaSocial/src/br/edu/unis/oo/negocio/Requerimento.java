@@ -5,7 +5,9 @@
 package br.edu.unis.oo.negocio;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Classe requerimento
@@ -20,7 +22,7 @@ public class Requerimento {
     private String obs;
     private Pessoa pessoa;
     private Usuario responsavel;
-    private List<Beneficio> beneficios = new ArrayList<Beneficio>(); 
+    private Set<Beneficio> beneficios = new HashSet<Beneficio>(); 
 
     public int getId() {
         return id;
@@ -78,14 +80,12 @@ public class Requerimento {
         this.responsavel = responsavel;
     }
 
-    public List<Beneficio> getBeneficios() {
+    public Set<Beneficio> getBeneficios() {
         return beneficios;
     }
 
-    public void setBeneficios(List<Beneficio> beneficios) {
+    public void setBeneficios(Set<Beneficio> beneficios) {
         this.beneficios = beneficios;
     }
-
-    
-    
+       
 }
