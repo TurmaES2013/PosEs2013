@@ -3,9 +3,9 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="br.edu.unis.oo.negocio">
-    <class name="Bairro" table="tblBairro">
-        <id name="id" type="int" column="id"/>
+    <class name="Cidade" table="tblCidade">
+        <id name="codigoIbge" type="int" column="codigoIbge"/>
         <property name="descricao" type="java.lang.String" column="descricao"/>       
-        <many-to-one name="cidade" class="Cidade" column="cidade"/>
+        <property name="uf" type="java.lang.String" column="uf"/>
     </class>
 </hibernate-mapping>
