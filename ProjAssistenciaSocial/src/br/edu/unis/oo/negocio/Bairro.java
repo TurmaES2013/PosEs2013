@@ -8,18 +8,23 @@ package br.edu.unis.oo.negocio;
  *
  * @author alunos
  */
-public class Cidade {
-   
-    private int codigoIbge;
+public class Bairro {
+    
+    private int id;
     private String descricao;
-    private String uf;
+    private Cidade cidade;
 
-    public int getCodigoIbge() {
-        return codigoIbge;
+    public Bairro(Cidade cidade)
+    {
+        this.setCidade(cidade);
     }
 
-    public void setCodigoIbge(int codigoIbge) {
-        this.codigoIbge = codigoIbge;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -29,13 +34,13 @@ public class Cidade {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    public String getUf() {
-        return uf;
+    
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
+
 }
-
