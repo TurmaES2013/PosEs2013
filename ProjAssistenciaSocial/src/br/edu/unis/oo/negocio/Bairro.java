@@ -13,8 +13,6 @@ public class Bairro {
     private int id;
     private String descricao;
     private Cidade cidade;
-
-    
     
     public Bairro(Cidade cidade)
     {
