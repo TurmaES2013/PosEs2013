@@ -31,11 +31,11 @@ public class Pessoa {
     private Escolaridade escolaridade;
     private Vinculo parentesco;
 
-    public List<Deficiencia> getDeficiencias() {
+    public Set<Deficiencia> getDeficiencias() {
         return deficiencias;
     }
 
-    public void setDeficiencias(List<Deficiencia> deficiencias) {
+    public void setDeficiencias(Set<Deficiencia> deficiencias) {
         this.deficiencias = deficiencias;
     }
 
@@ -143,11 +143,11 @@ public class Pessoa {
         this.capaz = capaz;
     }
 
-    public List<Renda> getRendas() {
+    public Set<Renda> getRendas() {
         return rendas;
     }
 
-    public void setRendas(List<Renda> rendas) {
+    public void setRendas(Set<Renda> rendas) {
         this.rendas = rendas;
     }
 }   
