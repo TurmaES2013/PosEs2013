@@ -11,8 +11,8 @@
         <property name="situacao" type="int" column="situacao"/>  
         <property name="obs" type="java.lang.String" column="obs"/>  
         <many-to-one name="pessoa" class="Pessoa" column="pessoa"/>
-        <many-to-one name="usuario" class="Usuario" column="usuario"/>
-        <set name="set" table="tblRequerimentoBeneficio">
+        <many-to-one name="responsavel" class="Usuario" column="usuario"/>
+        <set name="beneficios" table="tblRequerimentoBeneficio">
 		<key column="requerimento" />
 		<many-to-many column="beneficio" class="Beneficio"/>
 	</set>

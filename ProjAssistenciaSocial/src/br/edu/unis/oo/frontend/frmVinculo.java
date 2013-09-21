@@ -4,6 +4,14 @@
  */
 package br.edu.unis.oo.frontend;
 
+import br.edu.unis.oo.negocio.Vinculo;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 /**
  *
  * @author alunos
@@ -28,11 +36,28 @@ public class frmVinculo extends javax.swing.JInternalFrame {
 
         btnNovo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblVinculo = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
         setTitle("Cadastro de vínculos");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -41,7 +66,7 @@ public class frmVinculo extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblVinculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -52,7 +77,7 @@ public class frmVinculo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblVinculo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,9 +106,25 @@ public class frmVinculo extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnNovoActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        
+        SessionFactory sfac = new Configuration().configure().buildSessionFactory();
+        Session se = sfac.openSession();
+        
+        List vinculos = se.createQuery("from Vinculo order by descricao").list();
+        DefaultTableModel model = (DefaultTableModel)this.tblVinculo.getModel();
+        model.setNumRows(0);
+        Iterator it = vinculos.iterator();
+        while(it.hasNext()){
+            Vinculo v = (Vinculo) it.next();
+            model.addRow(new Object[]{v.getId(), v.getDescricao()});
+        }
+        
+    }//GEN-LAST:event_formInternalFrameOpened
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNovo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblVinculo;
     // End of variables declaration//GEN-END:variables
 }
