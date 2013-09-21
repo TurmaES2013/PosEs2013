@@ -6,7 +6,7 @@ package br.edu.unis.oo.negocio;
 
 /**
  *
- * @author Cintia
+ * @author Cintia Garcia
  */
 public class Escolaridade {
     
