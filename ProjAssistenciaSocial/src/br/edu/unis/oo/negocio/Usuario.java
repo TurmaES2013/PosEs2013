@@ -5,7 +5,7 @@ public class Usuario {
     public String nome;
     public String cpf;
     public int tipo;
-    public boolean status;
+    public int status;
 
     public int getId() {
         return id;
@@ -39,11 +39,11 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
     
