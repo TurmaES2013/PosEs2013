@@ -32,7 +32,16 @@ public class frmHistoricoRequerimento extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         bntNovo.setText("Novo");
+        bntNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntNovoActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,6 +98,11 @@ public class frmHistoricoRequerimento extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bntNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntNovoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bntNovoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton bntNovo;
     private javax.swing.JLabel jLabel1;

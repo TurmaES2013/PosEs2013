@@ -32,4 +32,8 @@ public class Beneficio {
         this.status = status;
     }
     
+    @Override
+    public String toString(){
+        return descricao;
+    }
 }

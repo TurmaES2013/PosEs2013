@@ -4,6 +4,15 @@
  */
 package br.edu.unis.oo.frontend;
 
+import br.edu.unis.oo.negocio.Requerimento;
+import br.edu.unis.oo.negocio.Vinculo;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 /**
  *
  * @author alunos
@@ -28,13 +37,22 @@ public class frmRequerimento extends javax.swing.JInternalFrame {
 
         btnNovo = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblRequerimento = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
 
-        btnNovo.setText("Novo");
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
+
+        tblRequerimento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -60,7 +78,7 @@ public class frmRequerimento extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblRequerimento);
 
         jLabel1.setText("Filtro");
 
@@ -90,11 +108,50 @@ public class frmRequerimento extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {                                         
+        
+       DadosIniciais();
+ 
+    } 
+    private void DadosIniciais(){
+        SessionFactory sfac = new Configuration().configure().buildSessionFactory();
+        Session se = sfac.openSession();
+        
+        List vinculos = se.createQuery("from Requerimento order by id").list();
+        DefaultTableModel model = (DefaultTableModel)this.tblRequerimento.getModel();
+        model.setNumRows(0);
+                                      
+        Iterator it = vinculos.iterator();
+        while(it.hasNext()){
+            Requerimento r = (Requerimento) it.next();
+            model.addRow(new Object[]{
+                r.getId(),
+                r.getData(),
+                r.getPessoa(),
+                r.getResponsavel(),
+                r.getBeneficios(),
+                r.getValor(),
+                r.getSituacao(),
+                r.getObs()});
+        }
+    }
+    
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        
+        frmDetalheRequerimento dr = new frmDetalheRequerimento(javax.swing.JOptionPane.getFrameForComponent(this), true);
+        dr.id = "0";
+        dr.setLocationRelativeTo(null);
+        dr.setVisible(true);
+        
+        DadosIniciais();
+    }//GEN-LAST:event_btnNovoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnNovo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblRequerimento;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }
