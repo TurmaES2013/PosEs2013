@@ -6,7 +6,16 @@ public class Usuario {
     public String cpf;
     public int tipo;
     public int status;
+    public String senha;
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
     public int getId() {
         return id;
     }

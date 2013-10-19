@@ -8,6 +8,7 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -52,6 +53,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jMenu1.setText("Arquivo");
         jMenuBar1.add(jMenu1);
@@ -168,6 +174,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         mdiPrincipal.add(v);
         v.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        dlgLogin l = new dlgLogin(this, rootPaneCheckingEnabled);
+        l.setLocationRelativeTo(null);
+        l.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        //l.setUndecorated(false);
+        l.setVisible(true);
+        
+    }//GEN-LAST:event_formWindowOpened
 
 
     /**
