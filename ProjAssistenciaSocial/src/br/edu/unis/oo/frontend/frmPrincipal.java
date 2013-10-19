@@ -4,6 +4,9 @@
  */
 package br.edu.unis.oo.frontend;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -145,6 +148,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         frmVinculo v = new frmVinculo();
         mdiPrincipal.add(v);
+        try {
+            v.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 

@@ -151,6 +151,7 @@ public class frmVinculo extends javax.swing.JInternalFrame {
         
         frmDetalheVinculo dv = new frmDetalheVinculo(javax.swing.JOptionPane.getFrameForComponent(this), true);
         dv.id = "0";
+        dv.setLocationRelativeTo(null);
         dv.setVisible(true);
         
         DadosIniciais();
@@ -193,9 +194,11 @@ public class frmVinculo extends javax.swing.JInternalFrame {
             dv.id = "" + tblVinculo.getValueAt(linha, 0);
             dv.descricao = "" + tblVinculo.getValueAt(linha, 1);
             
+            dv.setLocationRelativeTo(null);
             dv.setVisible(true);
             
             DadosIniciais();
+            
             
         }
         
