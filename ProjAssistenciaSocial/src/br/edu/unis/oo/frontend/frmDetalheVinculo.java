@@ -6,6 +6,7 @@ package br.edu.unis.oo.frontend;
 
 import br.edu.unis.oo.negocio.Vinculo;
 import javax.swing.JOptionPane;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,7 +17,8 @@ import org.hibernate.cfg.Configuration;
  * @author alunos
  */
 public class frmDetalheVinculo extends javax.swing.JDialog {
-
+    public String id;
+    public String descricao;
     /**
      * Creates new form frmDetalheVinculo
      */
@@ -44,6 +46,11 @@ public class frmDetalheVinculo extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de vínculo");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Id:");
 
@@ -59,6 +66,11 @@ public class frmDetalheVinculo extends javax.swing.JDialog {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,15 +125,52 @@ public class frmDetalheVinculo extends javax.swing.JDialog {
         Session se = sfac.openSession();
         Transaction tx = se.beginTransaction();
         
-        Vinculo v = new Vinculo();
-        v.setDescricao(this.txtDescricao.getText());
-        JOptionPane.showMessageDialog(this, "Vinculo cadastrado com sucesso");
-        se.save(v);
+        if (id == "0") {
+            Vinculo v = new Vinculo();
+            v.setDescricao(this.txtDescricao.getText());
+            JOptionPane.showMessageDialog(this, "Vinculo cadastrado com sucesso");
+            se.save(v);
+        }else{
+             Query q = se.createQuery("from Vinculo where id = ?")
+                .setString(0, this.txtId.getText());
+        
+             Vinculo v = (Vinculo)q.uniqueResult();
+             v.setDescricao(this.txtDescricao.getText());
+             se.update(v);
+        }
         tx.commit();
         se.close();
         this.setVisible(false);
         
     }//GEN-LAST:event_btnGravarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+        if (id != "0"){
+            this.txtId.setText(id);
+        }
+        this.txtDescricao.setText(descricao);
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        
+        SessionFactory sfac = new Configuration().configure().buildSessionFactory();
+        Session se = sfac.openSession();
+        Transaction tx = se.beginTransaction();
+        
+        Query q = se.createQuery("from Vinculo where id = ?")
+                .setString(0, this.txtId.getText());
+        
+        Vinculo v = (Vinculo)q.uniqueResult();
+        
+        se.delete(v);
+        tx.commit();
+        se.close();
+        
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

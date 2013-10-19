@@ -5,8 +5,10 @@
 package br.edu.unis.oo.frontend;
 
 import br.edu.unis.oo.negocio.Vinculo;
+import java.awt.Point;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -87,6 +89,11 @@ public class frmVinculo extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblVinculo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVinculoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblVinculo);
 
         jLabel1.setText("Filtro:");
@@ -126,16 +133,8 @@ public class frmVinculo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        
-        frmDetalheVinculo dv = new frmDetalheVinculo(javax.swing.JOptionPane.getFrameForComponent(this), true);
-        dv.setVisible(true);
-        
-    }//GEN-LAST:event_btnNovoActionPerformed
-
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        
-        SessionFactory sfac = new Configuration().configure().buildSessionFactory();
+    private void DadosIniciais(){
+         SessionFactory sfac = new Configuration().configure().buildSessionFactory();
         Session se = sfac.openSession();
         
         List vinculos = se.createQuery("from Vinculo order by descricao").list();
@@ -146,6 +145,21 @@ public class frmVinculo extends javax.swing.JInternalFrame {
             Vinculo v = (Vinculo) it.next();
             model.addRow(new Object[]{v.getId(), v.getDescricao()});
         }
+    }
+    
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        
+        frmDetalheVinculo dv = new frmDetalheVinculo(javax.swing.JOptionPane.getFrameForComponent(this), true);
+        dv.id = "0";
+        dv.setVisible(true);
+        
+        DadosIniciais();
+        
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        
+       DadosIniciais();
         
     }//GEN-LAST:event_formInternalFrameOpened
 
@@ -166,6 +180,26 @@ public class frmVinculo extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{v.getId(), v.getDescricao()});
         }
     }//GEN-LAST:event_txtFiltroKeyReleased
+
+    private void tblVinculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVinculoMouseClicked
+       
+        if(evt.getClickCount() == 2){
+            Point p = evt.getPoint();
+            int linha = tblVinculo.rowAtPoint(p);
+            //int coluna = tblVinculo.columnAtPoint(p);
+                       
+            frmDetalheVinculo dv = new frmDetalheVinculo(javax.swing.JOptionPane.getFrameForComponent(this), true);
+            
+            dv.id = "" + tblVinculo.getValueAt(linha, 0);
+            dv.descricao = "" + tblVinculo.getValueAt(linha, 1);
+            
+            dv.setVisible(true);
+            
+            DadosIniciais();
+            
+        }
+        
+    }//GEN-LAST:event_tblVinculoMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNovo;
