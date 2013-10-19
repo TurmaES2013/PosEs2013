@@ -131,12 +131,15 @@ public class frmDetalheVinculo extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Vinculo cadastrado com sucesso");
             se.save(v);
         }else{
-             Query q = se.createQuery("from Vinculo where id = ?")
-                .setString(0, this.txtId.getText());
-        
-             Vinculo v = (Vinculo)q.uniqueResult();
-             v.setDescricao(this.txtDescricao.getText());
-             se.update(v);
+             int result = JOptionPane.showConfirmDialog(this, "Deseja realmente alterar este registro?","Exclusão",JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE);
+             if (result == JOptionPane.YES_OPTION) {
+                Query q = se.createQuery("from Vinculo where id = ?")
+                   .setString(0, this.txtId.getText());
+
+                Vinculo v = (Vinculo)q.uniqueResult();
+                v.setDescricao(this.txtDescricao.getText());
+                se.update(v);
+             }
         }
         tx.commit();
         se.close();
@@ -148,6 +151,8 @@ public class frmDetalheVinculo extends javax.swing.JDialog {
        
         if (id != "0"){
             this.txtId.setText(id);
+        } else {
+            this.btnExcluir.setVisible(false);
         }
         this.txtDescricao.setText(descricao);
         
@@ -155,21 +160,25 @@ public class frmDetalheVinculo extends javax.swing.JDialog {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         
-        SessionFactory sfac = new Configuration().configure().buildSessionFactory();
-        Session se = sfac.openSession();
-        Transaction tx = se.beginTransaction();
+        int result = JOptionPane.showConfirmDialog(this, "Deseja realmente excluir este registro?","Exclusão",JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE);
         
-        Query q = se.createQuery("from Vinculo where id = ?")
-                .setString(0, this.txtId.getText());
-        
-        Vinculo v = (Vinculo)q.uniqueResult();
-        
-        se.delete(v);
-        tx.commit();
-        se.close();
-        
-        this.setVisible(false);
-        
+        if (result == JOptionPane.YES_OPTION) {
+
+            SessionFactory sfac = new Configuration().configure().buildSessionFactory();
+            Session se = sfac.openSession();
+            Transaction tx = se.beginTransaction();
+
+            Query q = se.createQuery("from Vinculo where id = ?")
+                    .setString(0, this.txtId.getText());
+
+            Vinculo v = (Vinculo)q.uniqueResult();
+
+            se.delete(v);
+            tx.commit();
+            se.close();
+
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**

@@ -76,6 +76,8 @@
                 <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Objeto de refer&#xea;ncia: Vinculo"/>
+            <Property name="autoResizeMode" type="int" value="0" postCode="tblVinculo.getColumnModel().getColumn(0).setPreferredWidth(200);&#xa;tblVinculo.getColumnModel().getColumn(1).setPreferredWidth(700);"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblVinculoMouseClicked"/>

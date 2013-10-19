@@ -9,7 +9,9 @@ import java.awt.Point;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -89,6 +91,10 @@ public class frmVinculo extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblVinculo.setToolTipText("Objeto de referência: Vinculo");
+        tblVinculo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblVinculo.getColumnModel().getColumn(0).setPreferredWidth(200);
+        tblVinculo.getColumnModel().getColumn(1).setPreferredWidth(700);
         tblVinculo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblVinculoMouseClicked(evt);
@@ -134,12 +140,13 @@ public class frmVinculo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DadosIniciais(){
-         SessionFactory sfac = new Configuration().configure().buildSessionFactory();
+        SessionFactory sfac = new Configuration().configure().buildSessionFactory();
         Session se = sfac.openSession();
         
         List vinculos = se.createQuery("from Vinculo order by descricao").list();
         DefaultTableModel model = (DefaultTableModel)this.tblVinculo.getModel();
         model.setNumRows(0);
+                                      
         Iterator it = vinculos.iterator();
         while(it.hasNext()){
             Vinculo v = (Vinculo) it.next();
@@ -161,7 +168,7 @@ public class frmVinculo extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         
        DadosIniciais();
-        
+ 
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void txtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyPressed
@@ -175,6 +182,7 @@ public class frmVinculo extends javax.swing.JInternalFrame {
         List vinculos = se.createQuery("from Vinculo where descricao like '"+ this.txtFiltro.getText() +"%' order by descricao").list();
         DefaultTableModel model = (DefaultTableModel)this.tblVinculo.getModel();
         model.setNumRows(0);
+        
         Iterator it = vinculos.iterator();
         while(it.hasNext()){
             Vinculo v = (Vinculo) it.next();
